@@ -1,9 +1,9 @@
-import './Navbar.css'
+import styles from './Navbar.module.css'
 
 const Navbar = () => {
     return (
         <header>
-            <h1 className='Titulo'>Ecommerce</h1>
+            <h1 className={styles.titulo}>Ecommerce</h1>
             <section>
                 <button>Celulares</button>
                 <button>Tablets</button>
