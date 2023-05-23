@@ -1,3 +1,8 @@
-.titulo {
+.color {
     color: red
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
 }

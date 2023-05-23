@@ -1,14 +1,17 @@
 import styles from './Navbar.module.css'
+import CartWidget from '../CartWidget/CartWidget'
 
-const Navbar = () => {
+export const Navbar = () => {
+    console.log(styles)
     return (
-        <header>
+        <header className={styles.header}>
             <h1 className={styles.titulo}>Ecommerce</h1>
-            <section>
-                <button>Celulares</button>
-                <button>Tablets</button>
-                <button>Notebooks</button>
-            </section>
+            <ul>
+                <li style={{ fontSize: 20 }}>Celulares</li>
+                <li>Tablets</li>
+                <li>Notebooks</li>
+            </ul>
+            <CartWidget />
         </header>
     )
 }
