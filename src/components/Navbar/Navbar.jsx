@@ -2,7 +2,6 @@ import styles from './Navbar.module.css'
 import CartWidget from '../CartWidget/CartWidget'
 
 export const Navbar = () => {
-    console.log(styles)
     return (
         <header className={styles.header}>
             <h1 className={styles.titulo}>Ecommerce</h1>
