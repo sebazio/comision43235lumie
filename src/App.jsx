@@ -1,12 +1,11 @@
-import ItemListContainer from './components/ItemListContainer/ItemListContainer'
-import Navbar from './components/Navbar/Navbar'
+import MercadoLibre from "./components/MercadoLibre"
 
 const App = () => {
 
   return (
     <>
-      <Navbar />
-      <ItemListContainer greeting={'Bienvenidos a mi Ecommerce'}/>
+      <h1>Consumiendo Apis</h1>
+      <MercadoLibre />
     </>
   )
 }
