@@ -2,7 +2,7 @@ import Item from "../Item/Item"
 
 const ItemList = ({products}) => {
     return (
-        <div style={{ display: 'flex' }}>
+        <div>
             {
                 products.map(prod => {
                     return (

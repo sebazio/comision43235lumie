@@ -1,15 +1,39 @@
 import { useState, useEffect } from "react"
-import { getProducts } from "../../asyncMock"
-import ItemList from "../ItemList/ItemList"
+import { getProducts, getProductsByCategory } from "../../asyncMock"
+import ItemListOtro from "../ItemList/ItemList"
+
+import { useParams } from "react-router-dom"
 
 const ItemListContainer = ({ greeting }) => {
     const [products, setProducts] = useState([])
 
+    const { categoryId } = useParams()
+
     useEffect(() => {
-        getProducts().then(response => {
-            setProducts(response)
-        }) 
-    }, [])
+        document.title = categoryId ? `Categoria: ${categoryId}` : 'Todos los productos'
+
+        return () => document.title = 'Mi Ecommerce'
+    }, [categoryId])
+
+    useEffect(() => {
+
+        const asyncFunction = categoryId ? getProductsByCategory : getProducts
+
+        asyncFunction(categoryId)
+            .then(response => {
+                setProducts(response)
+            }) 
+        // if(categoryId) {
+        //     getProductsByCategory(categoryId).then(response => {
+        //         setProducts(response)
+        //     }) 
+        // } else {
+        //     getProducts().then(response => {
+        //         setProducts(response)
+        //     }) 
+        // }
+
+    }, [categoryId])
 
     // const arrayComponents = products.map(prod => {
     //     return (
@@ -27,7 +51,7 @@ const ItemListContainer = ({ greeting }) => {
     return (
         <div>
             <h1>{greeting}</h1>
-            <ItemList products={products}/>
+            <ItemListOtro products={products}/>
         </div>
     )
 }
