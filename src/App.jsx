@@ -3,6 +3,8 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Button from './components/Button/Button'
+import Animation from './components/Animation/Animation'
 
 const App = () => {
   return (
@@ -15,6 +17,8 @@ const App = () => {
           <Route path='/item/:itemId' element={<ItemDetailContainer />} />
         </Routes>
       </BrowserRouter>
+      {/* <Button /> */}
+      {/* <Animation /> */}
     </>
   )
 }

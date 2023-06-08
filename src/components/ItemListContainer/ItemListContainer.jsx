@@ -49,7 +49,7 @@ const ItemListContainer = ({ greeting }) => {
     // console.log(arrayComponents)
     
     return (
-        <div>
+        <div onClick={() => console.log('itemlistcontainer')}>
             <h1>{greeting}</h1>
             <ItemListOtro products={products}/>
         </div>

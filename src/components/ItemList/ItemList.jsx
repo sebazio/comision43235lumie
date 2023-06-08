@@ -2,7 +2,7 @@ import Item from "../Item/Item"
 
 const ItemList = ({products}) => {
     return (
-        <div>
+        <div onClick={() => console.log('itemlist')}>
             {
                 products.map(prod => {
                     return (

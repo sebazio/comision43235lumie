@@ -4,8 +4,13 @@ const Item = ({ id, img, name, category, price }) => {
 
     const navigate = useNavigate()
 
+    const handleClick = (e) => {
+        e.stopPropagation()
+        console.log('item')
+    }
+
     return (
-        <div onClick={() => navigate(`/item/${id}`)} style={{ margin: 20, border: '1px solid #000', display: 'flex', flexDirection: 'column', alignItems: 'center'}} >
+        <div onClick={handleClick} style={{ margin: 20, border: '1px solid #000', display: 'flex', flexDirection: 'column', alignItems: 'center'}} >
             <img src={img} alt={name} style={{ width: 100}}/>
             <h3>{name}</h3>
             <p>category: {category}</p>
