@@ -4,62 +4,34 @@ import ItemList from '../ItemList/ItemList'
 import ItemGrid from '../ItemGrid/ItemGrid'
 import { useParams } from 'react-router-dom'
 
-import { getDocs, collection, query, where } from 'firebase/firestore'
-import { db } from '../../services/firebase/firebaseConfig'
+import { useAsync } from '../../hooks/useAsync'
 
-const ItemListMemo = memo(ItemList)
+import { getProducts } from '../../services/firebase/firestore/products'
+
+
 
 const ItemListContainer = ({ greeting }) => {
-    const [products, setProducts] = useState([])
     const [displayGrid, setDisplayGrid] = useState(false)
-    const [loading, setLoading] = useState(true)
-
     const { categoryId } = useParams()
 
-    useEffect(() => {
-        const productsRef = !categoryId 
-            ? collection(db, 'products')
-            : query(collection(db, 'products'), where('category', '==', categoryId))
+    const getProductsWithCategory = () => getProducts(categoryId)
 
-        setLoading(true)
-        getDocs(productsRef)
-            .then(querySnapshot =>{
-                const productsAdapted = querySnapshot.docs.map(doc => {
-                    const fields = doc.data()
-                    return { id: doc.id, ...fields }
-                }) 
-                
-                setProducts(productsAdapted)
-            })
-            .finally(() => {
-                setLoading(false)
-            })
-            
-
-        // const getFunction = categoryId ? getProductsByCategory : getProducts
-        // setLoading(true)
-        // getFunction(categoryId)
-        //     .then(response => {
-        //         setProducts(response)
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //     })
-        //     .finally(() => {
-        //         setLoading(false) 
-        //     })
-    }, [categoryId])
+    const { data: products, error, loading } = useAsync(getProductsWithCategory, [categoryId])
     
     if(loading) {
         return <h1>Loading...</h1>
     }
 
+    if(error) {
+        return <h1>Hubo un error al obtener los productos</h1>
+    }
+
     return (
         <div>
-            <h1>{greeting}</h1>
+            <h1 className='title'>{greeting}</h1>
             <button onClick={() => setDisplayGrid(true)}>grilla</button>
             <button onClick={() => setDisplayGrid(false)}>lista</button>
-            { displayGrid ? <ItemGrid products={products}/> : <ItemListMemo products={products}/>}
+            { displayGrid ? <ItemGrid products={products}/> : <ItemList products={products}/>}
         </div>
     )
 }

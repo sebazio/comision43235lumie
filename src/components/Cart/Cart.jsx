@@ -15,6 +15,7 @@ const  Cart = () => {
                             <h3>${prod.price}</h3>
                             <h3>cantidad: {prod.quantity}</h3>
                             <h3>subtotal: {prod.quantity * prod.price}</h3>
+                            <button></button>
                         </div>
                     )
                 })
