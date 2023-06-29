@@ -29,6 +29,7 @@ const ItemListContainer = ({ greeting }) => {
     return (
         <div>
             <h1 className='title'>{greeting}</h1>
+            <h2>Ultima version</h2>
             <button onClick={() => setDisplayGrid(true)}>grilla</button>
             <button onClick={() => setDisplayGrid(false)}>lista</button>
             { displayGrid ? <ItemGrid products={products}/> : <ItemList products={products}/>}
